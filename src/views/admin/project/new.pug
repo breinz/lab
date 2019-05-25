@@ -1,0 +1,18 @@
+extends ../../layout/admin/layout
+
+
+block admin_content
+    
+    -errors = errors || {}
+    
+    h1 New project
+        
+    form(method="POST")
+        .form-group
+            label(for="title") Title
+            input.form-control(type="text" id="title" name="title" autofocus)
+            if errors.title
+                small.form-text.text-danger=errors.title
+        
+        input.btn.btn-primary(type="submit", value="Save")
+            

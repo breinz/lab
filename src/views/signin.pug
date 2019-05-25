@@ -1,0 +1,32 @@
+extends layout/layout
+
+block content
+    
+    -errors = errors || {}
+    -data = data || {}
+
+    .grid-container
+        .grid-x
+            .cell.small-6.small-offset-3
+                .callout
+                    h1 Signin
+                    form(method="post")
+                        label
+                            |Name
+                            input(type="text", name="name" value=data.name autofocus)
+                            if errors.name
+                                .help-text.error=errors.name
+                        label
+                            |Email
+                            input(type="text", name="email" value=data.email)
+                            if errors.email
+                                .help-text.error=errors.email
+                        label
+                            |Password
+                            input(type="password", name="password")
+                            if errors.password
+                                .help-text.error=errors.password
+                        label
+                            |Repeat password
+                            input(type="password", name="password_repeat")
+                        input.button(type="submit", value="Signin")

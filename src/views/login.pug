@@ -1,0 +1,22 @@
+extends layout/layout
+
+block content
+    
+    -errors = errors || {}
+    -data = data || {}
+
+    .container
+        .row.justify-content-center
+            .col-sm-6.col-offset-3
+                h1 Login
+                if error
+                    .alert.alert-danger Error logging in, please try again
+                form(method="post")
+                    .form-group
+                        label(for="email") Email
+                        input.form-control(type="text", name="email" id="email" value=data.email autofocus)
+                    .form-group
+                        label(form="password") Password
+                        input.form-control(type="password" id="password" name="password")
+                    .form-group
+                        input.btn.btn-primary(type="submit", value="Login")

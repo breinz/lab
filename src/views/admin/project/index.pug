@@ -1,0 +1,30 @@
+extends ../../layout/admin/layout
+
+block admin_content
+    .row
+        .col-sm-10
+            h1 Projects
+        .col-sm-2
+            a.btn.btn-success.float-right#test(href="/admin/projects/new") New project
+    
+    .row
+        .col
+            table.table.table-striped.table-hover
+                //thead
+                    tr
+                        th Title
+                        th(style="width:1%;whitespace:no-wrap") 
+                            |Actions
+                for project in projects
+                    tr
+                        td
+                            a(href=`/admin/projects/${project.id}`)=project.title
+                        td.actions
+                            .btn-group.btn-group-sm
+                                a.btn.btn-primary(href=`/admin/projects/${project.id}/edit`)
+                                    |&nbsp;
+                                    i.fas.fa-edit
+                                    |&nbsp;
+                                +delete_link(`/admin/projects/${project.id}/delete`)
+                else
+                    .alert.alert-secondary.text-center No project for now

@@ -1,0 +1,24 @@
+header
+    nav.navbar.navbar-expand.navbar-dark.bg-dark
+        .container
+            a.navbar-brand(href="/" style="font-weight:bold") Lab
+            //button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation")
+                span.navbar-toggler-icon
+
+            //.collapse.navbar-collapse#navbarSupportedContent
+            //if current_user
+            //    ul.navbar-nav.mr-auto
+            //        li.nav-item(class=false?"active":"")
+            //            a.nav-link(href="#") Admin
+
+            ul.navbar-nav
+                li.nav-item
+                    if current_user
+                        a.nav-link(href="#")=current_user.name
+                    else
+                        a.nav-link(href="/login") Login
+                if current_user
+                    li.nav-item
+                        a.nav-link(href="/admin" class=menu_item==='admin'?'active':'') Admin
+                    li.nav-item
+                        a.nav-link(href="/logout") Logout

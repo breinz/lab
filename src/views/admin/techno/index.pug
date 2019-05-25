@@ -1,0 +1,30 @@
+extends ../../layout/admin/layout
+
+block admin_content
+    .row
+        .col-sm-10
+            h1 Technos
+        .col-sm-2
+            a.btn.btn-success.float-right#test(href="/admin/technos/new") New techno
+    
+    .row
+        .col
+            table.table.table-striped.table-hover
+                //thead
+                    tr
+                        th Title
+                        th(style="width:1%;whitespace:no-wrap") 
+                            |Actions
+                for techno in technos
+                    tr
+                        td
+                            a(href=`/admin/technos/${techno.id}`)=techno.name
+                        td.actions
+                            .btn-group.btn-group-sm
+                                a.btn.btn-primary(href=`/admin/technos/${techno.id}/edit`)
+                                    |&nbsp;
+                                    i.fas.fa-edit
+                                    |&nbsp;
+                                +delete_link(`/admin/technos/${techno.id}/delete`)
+                else
+                    .alert.alert-secondary.text-center No techno for now

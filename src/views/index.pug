@@ -1,0 +1,21 @@
+extends layout/layout
+
+block content
+    .grid-container
+        .grid-x
+            .cell
+                h1 Hey!
+                button.btn.btn-primary pom
+                p Let's make something amazing
+                .callout
+                    p
+                        if current_user
+                            |Logged in as 
+                            =current_user.name
+                            p
+                                a.button.alert(href="/logout") Logout
+                        else
+                            |Not logged in
+                            p
+                                a.button(href="/login") Login
+                                a.button.clear(href="/signin") Signin
