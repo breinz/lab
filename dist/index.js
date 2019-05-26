@@ -8,9 +8,11 @@ var path_1 = __importDefault(require("path"));
 var body_parser_1 = __importDefault(require("body-parser"));
 var cookie_parser_1 = __importDefault(require("cookie-parser"));
 var express_session_1 = __importDefault(require("express-session"));
+var express_fileupload_1 = __importDefault(require("express-fileupload"));
 var router_1 = __importDefault(require("./router"));
 var middleware_1 = require("./middleware");
 var config_1 = __importDefault(require("./config"));
+var imageHelper_1 = __importDefault(require("./helper/imageHelper"));
 var app = express_1.default();
 app.use(body_parser_1.default.json());
 app.use(body_parser_1.default.urlencoded({ extended: false }));
@@ -27,6 +29,11 @@ app.set("view engine", "pug");
 app.set('views', path_1.default.join(__dirname, '../src/views'));
 app.use(middleware_1.flashMiddleware.init);
 app.use(middleware_1.userMiddleware.getCurrentUser);
+app.use(express_fileupload_1.default());
+app.use(function (req, res, next) {
+    res.locals.getImage = imageHelper_1.default.getImage;
+    next();
+});
 app.use("/", router_1.default.front);
 app.use("/admin", router_1.default.admin.admin);
 app.listen(config_1.default.PORT, "0.0.0.0", function () {

@@ -1,0 +1,25 @@
+-errors = errors || {}
+-project = project || {}
+-project.technos = project.technos || []
+
+form(method="POST")
+    .form-group
+        label(for="title") Title
+        input.form-control(type="text" id="title" name="title" value=project.title autofocus)
+        if errors.title
+            small.form-text.text-danger=errors.title
+    
+    .form-group
+        label Technos
+        br
+        for techno in technos
+            -selected = project.technos.indexOf(techno.id)>-1
+            .img-checkbox(class=selected?"selected":"")
+                input(
+                    type="checkbox" 
+                    name="technos" 
+                    value=techno.id 
+                    checked=selected )
+                img(src=getImage(techno.image, "small"), alt=techno.name title=techno.name)
+    
+    input.btn.btn-primary(type="submit", value="Save")

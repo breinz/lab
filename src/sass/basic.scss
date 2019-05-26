@@ -18,3 +18,37 @@ table {
         width: 1%;
     }
 }
+
+.img-checkbox {
+    display: inline;
+    margin-right: .5rem;
+    cursor: pointer;
+
+    input[type="checkbox"] {
+        display: none;
+    }
+
+    img {
+        padding: 2px;
+        border: 1px solid transparent;
+        border-radius: $border-radius;
+        filter: grayscale(100%);
+        opacity:.5;
+
+        transition: filter 300ms, opacity 300ms, border 300ms;
+    }
+
+    &:hover {
+        img {
+            opacity: .75;
+        }
+    }
+    
+    &.selected{
+        img {
+            border:1px solid $gray-400;
+            filter:none;
+            opacity: 1;
+        }
+    }
+}

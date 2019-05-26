@@ -1,6 +1,7 @@
-import { Document, Schema, Model } from "mongoose"
+import { Document, Schema, Model, Types } from "mongoose"
 
 import { db } from "../db"
+import { TechnoModel } from "./technoModel";
 
 /**
  * Model
@@ -9,7 +10,12 @@ export type ProjectModel = Document & {
     /**
      * Title
      */
-    title: string
+    title: string,
+
+    /**
+     * Technos
+     */
+    technos: Types.ObjectId[] | TechnoModel[]
 }
 
 /**
@@ -17,7 +23,13 @@ export type ProjectModel = Document & {
  */
 const projectSchema = new Schema({
     title: String,
+    technos: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Techno"
+        }
+    ]
 })
 
-const Project = db.model("Priject", projectSchema) as Model<Document> & ProjectModel;
+const Project = db.model("Project", projectSchema) as Model<Document> & ProjectModel;
 export default Project;

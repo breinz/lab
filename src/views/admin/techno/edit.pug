@@ -5,13 +5,6 @@ block admin_content
     -errors = errors || {}
     
     h1=`Edit ${techno.name}`
-        
-    form(method="POST")
-        .form-group
-            label(for="name") Name
-            input.form-control(type="text" id="name" name="name" value=techno.name autofocus)
-            if errors.name
-                small.form-text.text-danger=errors.name
-        
-        input.btn.btn-primary(type="submit", value="Save")
+
+    include _form
             

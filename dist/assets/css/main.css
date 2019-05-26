@@ -11335,3 +11335,23 @@ header {
 table .actions {
   white-space: nowrap;
   width: 1%; }
+
+.img-checkbox {
+  display: inline;
+  margin-right: .5rem;
+  cursor: pointer; }
+  .img-checkbox input[type="checkbox"] {
+    display: none; }
+  .img-checkbox img {
+    padding: 2px;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    filter: grayscale(100%);
+    opacity: .5;
+    transition: filter 300ms, opacity 300ms, border 300ms; }
+  .img-checkbox:hover img {
+    opacity: .75; }
+  .img-checkbox.selected img {
+    border: 1px solid #ced4da;
+    filter: none;
+    opacity: 1; }

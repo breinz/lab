@@ -18,6 +18,9 @@ block admin_content
                 for techno in technos
                     tr
                         td
+                            if techno.image
+                                img(src=getImage(techno.image, "tiny"), alt=techno.name)
+                                |&nbsp;
                             a(href=`/admin/technos/${techno.id}`)=techno.name
                         td.actions
                             .btn-group.btn-group-sm

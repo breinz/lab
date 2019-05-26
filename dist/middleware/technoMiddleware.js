@@ -43,6 +43,22 @@ var technoModel_1 = __importDefault(require("../model/technoModel"));
 var TechnoMiddleware = (function () {
     function TechnoMiddleware() {
     }
+    TechnoMiddleware.prototype.findAll = function (req, res, next) {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = req;
+                        return [4, technoModel_1.default.find()];
+                    case 1:
+                        _a.technos = (_b.sent());
+                        next();
+                        return [2];
+                }
+            });
+        });
+    };
     TechnoMiddleware.prototype.findTechno = function (req, res, next) {
         return __awaiter(this, void 0, void 0, function () {
             var _a;

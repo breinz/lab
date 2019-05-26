@@ -7,12 +7,13 @@ const router = express.Router();
 
 const controller = controllers.admin.technos;
 const middleware = middlewares.admin.techno;
+const imageMiddleware = middlewares.image;
 
 router.get('/', controller.getIndex);
 router.get("/new", controller.getNew);
-router.post("/new", middleware.validNew, controller.create);
+router.post("/new", imageMiddleware.uploadSingle, middleware.validNew, controller.create);
 router.get("/:id/edit", middleware.findTechno, controller.getEdit);
-router.post("/:id/edit", middleware.findTechno, controller.edit);
-router.post("/:id/delete", middleware.findTechno, controller.doDelete)
+router.post("/:id/edit", imageMiddleware.uploadSingle, middleware.findTechno, controller.edit);
+router.post("/:id/delete", middleware.findTechno, imageMiddleware.removeTechnoImages, controller.doDelete);
 
 export default router;

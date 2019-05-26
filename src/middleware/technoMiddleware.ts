@@ -4,6 +4,11 @@ import Techno, { TechnoModel } from "../model/technoModel";
 
 export default class TechnoMiddleware {
 
+    async findAll(req: Request, res: Response, next: NextFunction) {
+        req.technos = await Techno.find() as [TechnoModel];
+        next();
+    }
+
     async findTechno(req: Request, res: Response, next: NextFunction) {
         req.techno = await Techno.findById(req.params.id) as TechnoModel;
 

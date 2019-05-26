@@ -8,7 +8,8 @@ declare global {
             current_user?: UserModel,
             flash: (type: string, message: string) => void,
             project: ProjectModel,
-            techno: TechnoModel
+            techno: TechnoModel,
+            technos: [TechnoModel]
         }
     }
 }

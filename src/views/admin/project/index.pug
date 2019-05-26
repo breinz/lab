@@ -19,6 +19,11 @@ block admin_content
                     tr
                         td
                             a(href=`/admin/projects/${project.id}`)=project.title
+                            if project.technos.length
+                                |&emsp;
+                            for techno in project.technos
+                                |&nbsp;
+                                img(src=getImage(techno.image, "tiny"), alt=techno.name title=techno.name)
                         td.actions
                             .btn-group.btn-group-sm
                                 a.btn.btn-primary(href=`/admin/projects/${project.id}/edit`)

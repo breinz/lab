@@ -40,18 +40,57 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var projectValidator_1 = __importDefault(require("../validator/projectValidator"));
 var projectModel_1 = __importDefault(require("../model/projectModel"));
+var technoModel_1 = __importDefault(require("../model/technoModel"));
 var ProjectMiddleware = (function () {
     function ProjectMiddleware() {
     }
     ProjectMiddleware.prototype.validCreate = function (req, res, next) {
-        var validator = new projectValidator_1.default(req.body);
-        if (!validator.validCreate()) {
-            return res.render("admin/project/new", {
-                data: req.body,
-                errors: validator.errors
+        return __awaiter(this, void 0, void 0, function () {
+            var validator, _a, _b, _c, _d;
+            return __generator(this, function (_e) {
+                switch (_e.label) {
+                    case 0:
+                        validator = new projectValidator_1.default(req.body);
+                        if (!!validator.validCreate()) return [3, 2];
+                        _b = (_a = res).render;
+                        _c = ["admin/project/new"];
+                        _d = {
+                            project: req.body,
+                            errors: validator.errors
+                        };
+                        return [4, technoModel_1.default.find()];
+                    case 1: return [2, _b.apply(_a, _c.concat([(_d.technos = _e.sent(),
+                                _d)]))];
+                    case 2:
+                        next();
+                        return [2];
+                }
             });
-        }
-        next();
+        });
+    };
+    ProjectMiddleware.prototype.validEdit = function (req, res, next) {
+        return __awaiter(this, void 0, void 0, function () {
+            var validator, _a, _b, _c, _d;
+            return __generator(this, function (_e) {
+                switch (_e.label) {
+                    case 0:
+                        validator = new projectValidator_1.default(req.body);
+                        if (!!validator.validCreate()) return [3, 2];
+                        _b = (_a = res).render;
+                        _c = ["admin/project/edit"];
+                        _d = {
+                            project: req.body,
+                            errors: validator.errors
+                        };
+                        return [4, technoModel_1.default.find()];
+                    case 1: return [2, _b.apply(_a, _c.concat([(_d.technos = _e.sent(),
+                                _d)]))];
+                    case 2:
+                        next();
+                        return [2];
+                }
+            });
+        });
     };
     ProjectMiddleware.prototype.findProject = function (req, res, next) {
         return __awaiter(this, void 0, void 0, function () {

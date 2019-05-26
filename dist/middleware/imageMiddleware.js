@@ -38,84 +38,49 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var projectModel_1 = __importDefault(require("../../model/projectModel"));
-var AdminProjectController = (function () {
-    function AdminProjectController() {
+var path_1 = __importDefault(require("path"));
+var uuid = require("uuid/v4");
+var imageHelper_1 = __importDefault(require("../helper/imageHelper"));
+var ImageMiddleware = (function () {
+    function ImageMiddleware() {
+        console.log(this);
     }
-    AdminProjectController.prototype.index = function (req, res) {
+    ImageMiddleware.prototype.uploadSingle = function (req, res, next) {
         return __awaiter(this, void 0, void 0, function () {
-            var projects;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4, projectModel_1.default.find().populate("technos")];
-                    case 1:
-                        projects = _a.sent();
-                        res.render("admin/project/index", {
-                            projects: projects
-                        });
-                        return [2];
-                }
-            });
-        });
-    };
-    AdminProjectController.prototype.getNew = function (req, res) {
-        res.render("admin/project/new", { technos: req.technos });
-    };
-    AdminProjectController.prototype.create = function (req, res) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4, projectModel_1.default.create(req.body)];
-                    case 1:
-                        _a.sent();
-                        req.flash("success", "Project created");
-                        res.redirect("/admin/projects");
-                        return [2];
-                }
-            });
-        });
-    };
-    AdminProjectController.prototype.getEdit = function (req, res) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                res.render("admin/project/edit", {
-                    project: req.project,
-                    technos: req.technos
-                });
-                return [2];
-            });
-        });
-    };
-    AdminProjectController.prototype.edit = function (req, res) {
-        return __awaiter(this, void 0, void 0, function () {
+            var key, file, parts, dest;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        Object.assign(req.project, req.body);
-                        return [4, req.project.save()];
+                        if (!req.files || Object.keys(req.files).length === 0) {
+                            console.log("no file provided");
+                            return [2, next()];
+                        }
+                        key = Object.keys(req.files)[0];
+                        file = req.files[key];
+                        parts = file.name.split(".");
+                        dest = uuid() + "." + parts[parts.length - 1];
+                        return [4, file.mv(path_1.default.join(__dirname, "../assets/img", dest))];
                     case 1:
                         _a.sent();
-                        req.flash("success", req.project.title + " updated");
-                        res.redirect("/admin/projects");
+                        req.body[key] = dest;
+                        next();
                         return [2];
                 }
             });
         });
     };
-    AdminProjectController.prototype.doDelete = function (req, res) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4, req.project.remove()];
-                    case 1:
-                        _a.sent();
-                        req.flash("success", "Project " + req.project.title + " deleted");
-                        res.redirect("/admin/projects");
-                        return [2];
-                }
-            });
-        });
+    ImageMiddleware.prototype.removeTechnoImages = function (req, res, next) {
+        if (!req.techno.image || req.techno.image.length === 0) {
+            return next();
+        }
+        try {
+            imageHelper_1.default.removeImages(req.techno.image);
+        }
+        catch (error) {
+            return res.status(500).send("Unable to delete image");
+        }
+        next();
     };
-    return AdminProjectController;
+    return ImageMiddleware;
 }());
-exports.default = AdminProjectController;
+exports.default = ImageMiddleware;
