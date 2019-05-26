@@ -2,3 +2,5 @@ node_modules
 coverage
 *.log
 __snapshots__
+dist/assets/img/**/*
+dist/index.js
