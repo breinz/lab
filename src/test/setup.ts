@@ -1,6 +1,9 @@
-import User from "../model/userModel";
+import models from "../model"
 
 module.exports = async () => {
-    await User.deleteMany({});
+    // Empty database tables
+    await models.User.deleteMany({});
+    await models.Project.deleteMany({});
+    await models.Techno.deleteMany({});
     return;
 }

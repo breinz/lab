@@ -39,12 +39,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
-var userModel_1 = __importDefault(require("../model/userModel"));
+var model_1 = __importDefault(require("../model"));
 module.exports = function () { return __awaiter(_this, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4, userModel_1.default.deleteMany({})];
+            case 0: return [4, model_1.default.User.deleteMany({})];
             case 1:
+                _a.sent();
+                return [4, model_1.default.Project.deleteMany({})];
+            case 2:
+                _a.sent();
+                return [4, model_1.default.Techno.deleteMany({})];
+            case 3:
                 _a.sent();
                 return [2];
         }
