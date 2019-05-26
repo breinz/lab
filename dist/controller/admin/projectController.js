@@ -92,6 +92,9 @@ var AdminProjectController = (function () {
                 switch (_a.label) {
                     case 0:
                         Object.assign(req.project, req.body);
+                        if (!req.body.technos) {
+                            req.project.technos = [];
+                        }
                         return [4, req.project.save()];
                     case 1:
                         _a.sent();

@@ -1,4 +1,4 @@
-import User, { UserModel } from "../user"
+import User, { UserModel } from "../userModel"
 import faker from "faker";
 
 describe("UserModel", () => {

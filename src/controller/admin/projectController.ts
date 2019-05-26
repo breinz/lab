@@ -33,6 +33,10 @@ export default class AdminProjectController {
     async edit(req: Request, res: Response) {
         Object.assign(req.project, req.body);
 
+        if (!req.body.technos) {
+            req.project.technos = [];
+        }
+
         await req.project.save();
 
         req.flash("success", `${req.project.title} updated`);

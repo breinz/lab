@@ -24,7 +24,7 @@ export default class ProjectValidator {
 
     validTitle() {
         if (this.data.title.length === 0) {
-            this.errors.title = "Required"
+            this.errors.title = "Required";
         }
     }
 }

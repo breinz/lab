@@ -1,7 +1,7 @@
 import faker from "faker"
 
 import FrontController from "../front"
-import User, { UserModel } from "../../model/user";
+import User, { UserModel } from "../../model/userModel";
 
 describe("frontController", () => {
 

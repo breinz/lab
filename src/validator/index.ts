@@ -1,5 +1,5 @@
-import TechnoValidator from "./technoValidator";
+import ProjectValidator from "./technoValidator";
 
 export default {
-    techno: TechnoValidator
+    techno: ProjectValidator
 };

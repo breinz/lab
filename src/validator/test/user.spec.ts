@@ -1,7 +1,7 @@
 import faker from "faker";
 
 import UserValidator from "../user"
-import User from "../../model/user"
+import User from "../../model/userModel"
 
 describe("UserValidator", () => {
 

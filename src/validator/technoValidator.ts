@@ -6,7 +6,7 @@ type ErrorData = {
     name?: string
 };
 
-export default class TechnoValidator {
+export default class ProjectValidator {
 
     data: Data;
     errors: ErrorData = {};
