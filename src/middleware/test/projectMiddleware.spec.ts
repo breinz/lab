@@ -120,7 +120,6 @@ describe("ProjectMiddleware", () => {
             expect(next).toHaveBeenCalled()
             expect(req.project.id).toBe(project.id);
             expect(req.project.title).toBe(project.title);
-            console.log(project.title);
         })
     })
 })
