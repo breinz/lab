@@ -8,7 +8,7 @@ export default class AdminProjectController {
 
         res.render("admin/project/index", {
             projects: projects
-        })
+        });
     }
 
     getNew(req: Request, res: Response) {
