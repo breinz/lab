@@ -1,6 +1,6 @@
 import faker from "faker";
 
-export default class PeojectData {
+export default class TechnoData {
 
     valid() {
         return {

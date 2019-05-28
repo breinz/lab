@@ -7,11 +7,11 @@ export default class TechnosController {
     async getIndex(req: Request, res: Response) {
         const technos = await Techno.find() as [TechnoModel];
 
-        res.render("admin/techno/index", { technos: technos })
+        res.render("admin/techno/index", { technos: technos });
     }
 
     getNew(req: Request, res: Response) {
-        res.render("admin/techno/new")
+        res.render("admin/techno/new");
     }
 
     async create(req: Request, res: Response) {
@@ -33,7 +33,7 @@ export default class TechnosController {
 
         await req.techno.save();
 
-        req.flash("success", `${req.techno.name} edited`)
+        req.flash("success", `${req.techno.name} edited`);
 
         res.redirect("/admin/technos");
     }
@@ -41,8 +41,8 @@ export default class TechnosController {
     async doDelete(req: Request, res: Response) {
         await req.techno.remove();
 
-        req.flash("success", `Techno ${req.techno.name} removed`)
+        req.flash("success", `Techno ${req.techno.name} removed`);
 
-        res.redirect("/admin/technos")
+        res.redirect("/admin/technos");
     }
 }
