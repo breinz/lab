@@ -15,7 +15,7 @@ export default class TechnoMiddleware {
         if (!req.techno) {
             req.flash("error", "Techno not found");
 
-            return res.redirect("/admin/technos")
+            return res.redirect("/admin/technos");
         }
 
         next();
@@ -28,7 +28,7 @@ export default class TechnoMiddleware {
             return res.render("admin/techno/new", {
                 data: req.body,
                 errors: validator.errors
-            })
+            });
         }
 
         next();

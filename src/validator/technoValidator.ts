@@ -22,7 +22,7 @@ export default class ProjectValidator {
     }
 
     validName() {
-        if (this.data.name.length === 0) {
+        if (!this.data || !this.data.name || this.data.name.length === 0) {
             this.errors.name = "Required"
         }
     }
